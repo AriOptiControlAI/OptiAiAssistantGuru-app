@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+/* ── Theme tokens (Tailwind v4) ───────────── */
+@theme {
+  --color-primary: #0A0F1E;
+  --color-secondary: #0D1B3E;
+  --color-accent: #1E3A8A;
+  --color-accent-light: #2563EB;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ── CSS Custom Properties ────────────────── */
+:root {
+  --bg-primary: #0A0F1E;
+  --bg-secondary: #0D1B3E;
+  --accent: #1E3A8A;
+  --accent-light: #2563EB;
+  --text-primary: #E2E8F0;
+  --text-muted: #94A3B8;
+  --text-subtle: #475569;
+  --border: rgba(30, 58, 138, 0.4);
+  --glass: rgba(13, 27, 62, 0.65);
+  --radius: 12px;
+}
+
+/* ── Base ─────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+/* Subtle dot-grid texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(30, 58, 138, 0.18) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+input:focus, textarea:focus { outline: none; }
+
+/* ── Glass Panel utility ──────────────────── */
+@layer utilities {
+  .glass-panel {
+    background: var(--glass);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    position: relative;
+  }
+
+  .glass-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(255,255,255,0.022) 0%, transparent 55%);
+    pointer-events: none;
+  }
+}
+
+/* ── Opti blink animation ─────────────────── */
+@keyframes opti-pulse {
+  0%, 82%, 100% { opacity: 1; transform: scaleY(1); }
+  90%           { opacity: 0.1; transform: scaleY(0.08); }
+}
+
+.opti-eye {
+  animation: opti-pulse 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.opti-eye.delay {
+  animation-delay: 0.06s;
+}
+
+/* ── Typing dots ──────────────────────────── */
+@keyframes typing-dot {
+  0%, 60%, 100% { transform: translateY(0);  opacity: 0.35; }
+  30%           { transform: translateY(-4px); opacity: 1; }
+}
+
+.typing-dot {
+  display: inline-block;
+  animation: typing-dot 1.4s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.18s; }
+.typing-dot:nth-child(3) { animation-delay: 0.36s; }
+
+/* ── Step reveal ──────────────────────────── */
+@keyframes step-reveal {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.step-reveal {
+  animation: step-reveal 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* ── Chat scrollbar ───────────────────────── */
+.chat-scroll { scrollbar-width: thin; scrollbar-color: var(--accent) transparent; }
+.chat-scroll::-webkit-scrollbar       { width: 4px; }
+.chat-scroll::-webkit-scrollbar-track { background: transparent; }
+.chat-scroll::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+.chat-scroll::-webkit-scrollbar-thumb:hover { background: var(--accent-light); }
