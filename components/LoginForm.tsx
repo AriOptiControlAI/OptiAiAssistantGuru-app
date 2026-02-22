@@ -173,21 +173,6 @@ export default function LoginForm() {
             </button>
           </form>
 
-          {/* Demo hint */}
-          <div
-            className="mt-6 rounded-lg px-4 py-3 text-center"
-            style={{
-              background: 'rgba(30,58,138,0.1)',
-              border: '1px solid rgba(30,58,138,0.2)',
-            }}
-          >
-            <p className="text-xs text-[#475569]">
-              Demo account
-            </p>
-            <p className="text-xs text-[#64748B] mt-0.5 font-mono">
-              demo@opticontrol.ai / demo1234
-            </p>
-          </div>
         </div>
 
         <p className="text-center text-xs text-[#334155] mt-6">
