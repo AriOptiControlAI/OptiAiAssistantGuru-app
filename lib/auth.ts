@@ -6,7 +6,6 @@ const secret = new TextEncoder().encode(
 
 export const DEMO_USERS = [
   { id: 'user-001', email: 'demo@opticontrol.ai', password: 'demo1234', name: 'Alex' },
-  { id: 'user-002', email: 'admin@opticontrol.ai', password: 'admin1234', name: 'Admin' },
 ];
 
 export async function signToken(payload: {
